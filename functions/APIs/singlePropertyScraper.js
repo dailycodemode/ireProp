@@ -9,6 +9,10 @@ getSplitDeail = (summaryDetail, needle) => {
   if (summaryDetail.includes(needle)){
     const myArray = summaryDetail.trim().split(" ");
     let i = myArray.indexOf(needle);
+    if (i == -1) {
+      i = myArray.indexOf(needle + 's');
+    }
+    // console.log(myArray, i);
     return myArray[i-1];
   }else{
     console.log('needle not found:' + needle);
@@ -29,15 +33,48 @@ getSize = (summaryDetail, needle) => {
 }
 
 getHouseType = (summaryDetail, descriptionContent) => {
+  // console.log('get house type');
   if (summaryDetail.includes('semi-detached house')){
     return 'semi'
-  }else if (summaryDetail.includes('Bungalow')) {
+  } else if (summaryDetail.includes('bungalow')) {
     return('bung');
-  } 
-
+  } else if (summaryDetail.includes('detached house')) {
+    return('deta');
+  } else if (summaryDetail.includes('end of terrace house')) {
+    return('eot');
+  } else if (summaryDetail.includes('apartment')) {
+    return('apar');
+  } else if (summaryDetail.includes('terraced house')) {
+    return('terr');
+  } else if (summaryDetail.includes('country house')) {
+    return('coun');
+  } else if (summaryDetail.includes('duplex')) {
+    return('dupl');
+  } else if (summaryDetail.includes('townhouse')) {
+    return('town');
+  } else if (summaryDetail.includes('cottage')) {
+    return('cott');
+  } else if (summaryDetail.includes('farm')) {
+    return('farm');
+  } else if (summaryDetail.includes('cottage')) {
+    return('cott');
+  } else if (summaryDetail.includes('dormer')) {
+    return('dorm');
+  }
+  console.log('still could not get house type');
   if (descriptionContent.includes('bungalow')){
     return 'bung'
-  }
+  } else if (descriptionContent.includes('semi-detached')) {
+    return('semi');
+  } else if (descriptionContent.includes('detached house')) {
+    return('deta');
+  } else if (descriptionContent.includes('end of terrace house')) {
+    return('eot');
+  } else if (descriptionContent.includes('apartment')) {
+    return('apar');
+  } else if (descriptionContent.includes('terraced house')) {
+    return('terr');
+  } 
 
   return ""
 }
@@ -51,17 +88,17 @@ async function scrapePageSummaryDetails(url) {
     try {
       const { data } = await axios.get(url);
       const $ = cheerio.load(data);
-      const summaryDetails = $(".PropertyInfoStrip__Detail");
-      const descriptionContent = $(".PropertyDetails__DescriptionContent");
+      const summaryDetails = $(".PropertyInfoStrip__Detail").text();
+      const descriptionContent = $(".PropertyDetails__DescriptionContent").text();
       const mainImage = $(".PropertyMediaTabs__MainImage");
-      // console.log(descriptionContent.text());
+
       let summary = {}
-      // console.log(summaryDetails.text());
-      summary.beds = getSplitDeail(summaryDetails.text(), 'bed');
-      summary.baths = getSplitDeail(summaryDetails.text(), 'bath');
-      summary.size = getSize(summaryDetails.text(), 'm 2');
-      summary.houseType = getHouseType(summaryDetails.text().toLowerCase(), descriptionContent.text().toLowerCase());
-      summary.refreshDate = getRefreshDate(summaryDetails.text());
+      console.log(summaryDetails);
+      summary.beds = getSplitDeail(summaryDetails.toLowerCase(), 'bed');
+      summary.baths = getSplitDeail(summaryDetails.toLowerCase(), 'bath');
+      summary.size = getSize(summaryDetails.toLowerCase(), 'm 2');
+      summary.houseType = getHouseType(summaryDetails.toLowerCase(), descriptionContent.toLowerCase());
+      summary.refreshDate = getRefreshDate(summaryDetails);
       summary.mainImg = mainImage[0].attribs.src;
       
       console.log(summary);

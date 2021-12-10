@@ -21,4 +21,3 @@ app.get('/properties', cors(corsOptions), getAllProps);
 app.post('/postOneProperty', cors(corsOptions), postOneProperty);
 exports.api = functions.region('europe-west1').https.onRequest(app);
 
-// exports.testapi = functions.region('europe-west1').https.onRequest(app);
