@@ -30,6 +30,7 @@ getSize = (summaryDetail, needle) => {
     console.log('needle not found:' + needle);
     return("");
   }  
+  return "";
 }
 
 getHouseType = (summaryDetail, descriptionContent) => {
@@ -100,6 +101,7 @@ async function scrapePageSummaryDetails(url) {
       summary.houseType = getHouseType(summaryDetails.toLowerCase(), descriptionContent.toLowerCase());
       summary.refreshDate = getRefreshDate(summaryDetails);
       summary.mainImg = mainImage[0].attribs.src;
+      summary.url = url;
       
       console.log(summary);
       return(summary)

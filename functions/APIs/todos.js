@@ -44,6 +44,16 @@ exports.getAllTodos = (request, response) => {
 exports.getOneMyHome = (request, response) => {
     console.log("=======");
 	console.log(request.body.url);
+	response.json({'ans':'test1'})
+	// let summaryDetails =  scrapePageSummaryDetails(request.body.url).then((value) => {
+	// 	return response.json(value)
+	// });
+};
+
+exports.postOneMyHome = (request, response) => {
+    console.log("=======");
+	console.log({'ans':'test3'});
+	// response.json({'ans':'test3' + request.body})
 	let summaryDetails =  scrapePageSummaryDetails(request.body.url).then((value) => {
 		return response.json(value)
 	});

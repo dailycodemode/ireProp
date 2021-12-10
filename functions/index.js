@@ -11,13 +11,14 @@ const {
     getAllTodos,
     getOneMyHome,
     getAllProps,
-    postOneProperty
+    postOneProperty,
+    postOneMyHome
 } = require('./APIs/todos')
 
 app.get('/todos', cors(corsOptions), getAllTodos);
 app.get('/properGet', cors(corsOptions), getOneMyHome);
+app.post('/oneHome', cors(corsOptions), postOneMyHome);
 
 app.get('/properties', cors(corsOptions), getAllProps);
 app.post('/postOneProperty', cors(corsOptions), postOneProperty);
 exports.api = functions.region('europe-west1').https.onRequest(app);
-
