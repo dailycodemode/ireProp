@@ -15,6 +15,7 @@
 // }
 
 const { db } = require('../util/admin');
+const {scrapePageSummaryDetails} = require('./singlePropertyScraper');
 
 exports.getAllTodos = (request, response) => {
 	db
@@ -41,18 +42,11 @@ exports.getAllTodos = (request, response) => {
 };
 
 exports.getOneMyHome = (request, response) => {
-	// if (request.body.body.trim() === '') {
-	// 	return response.status(400).json({ body: 'Must not be empty' });
-    // }
-    
-    // if(request.body.title.trim() === '') {
-    //     return response.status(400).json({ title: 'Must not be empty' });
-    // }
     console.log("=======");
-	console.log(request.body.hi);
-	return response.json(request.body.hi);
-            // return response.json(responseTodoItem);
-
+	console.log(request.body.url);
+	let summaryDetails =  scrapePageSummaryDetails(request.body.url).then((value) => {
+		return response.json(value)
+	});
 };
 
 exports.getAllProps = (request, response) => {
