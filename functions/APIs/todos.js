@@ -52,7 +52,7 @@ exports.getOneMyHome = (request, response) => {
 
 exports.postOneMyHome = (request, response) => {
 	console.log("=======");
-	console.log({ 'ans': 'test3' });
+	console.log({ 'ans': 'postOneMyHome running' });
 	// response.json({'ans':'test3' + request.body})
 	let summaryDetails = scrapePageSummaryDetails(request.body.url).then((value) => {
 		return response.json(value)

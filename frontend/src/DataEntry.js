@@ -4,37 +4,12 @@ import fbFuncApi from "./api/fbFuncApi";
 
 class DataEntry extends React.Component {
 
-  state = {
-    urlAddress: "https://www.myhome.ie/residential/brochure/27-clonlara-kerry-pike-cork/4543437",
-  }
-
-  handleCallback = (childData) => {
-    this.setState({ urlAddress: childData })
-    const resp = fbFuncApi
-      .get(
-        "properties"
-      )
-      .then((resp) => {
-        // setTodos(resp.data);
-        // console.log(todos);
-        console.log(resp.data);
-      })
-      .catch((err) => {
-        console.error("err for some reason");
-      });
-  }
-
-  handleSubmit = (event) => {
-    console.log("parentHandleSubmit: " + event.target.value);
-    event.preventDefault();
-  }
-
   render() {
-    const { urlAddress } = this.state;
+    // const { urlAddress } = this.props.state;
     return (
       <div>
-        <SearchBar parentCallback={this.handleCallback} />
-        {urlAddress}
+        <SearchBar setOnePostData={this.props.setOnePostData} urlAddress={this.props.urlAddress}/>
+        {this.props.urlAddress}
       </div>
     )
   }
