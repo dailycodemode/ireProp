@@ -23,7 +23,7 @@ class App extends React.Component {
 
   state = {
     urlAddress: "",
-    onePost : {}
+    onePost : undefined
   }
 
   setOnePostData = (submittedUrl) => {
@@ -31,14 +31,16 @@ class App extends React.Component {
   }
 
   setOnePostDataOnSubmit  = (event) => {
-    const postHeaders = { url: this.state.submittedUrl };
+    const postHeaders = { url: this.state.urlAddress };
 
     const resp = fbFuncApi
       .post(
         "oneHome", postHeaders
       )
       .then((resp) => {
+        
         this.setState({ onePost: resp.data })
+        console.log("STATE");
         console.log(this.state);
       })
       .catch((err) => {
@@ -53,7 +55,7 @@ class App extends React.Component {
 
       <Intro />
       <br></br>
-      <PreviewProperty mainImg={this.state.onePost.mainImg}/>
+      <PreviewProperty onePageDetails={this.state}/>
       <br />
       <DataEntry setOnePostData={this.setOnePostData} setOnePostDataOnSubmit={this.setOnePostDataOnSubmit} urlAddress={this.state.urlAddress} />
       <br />
