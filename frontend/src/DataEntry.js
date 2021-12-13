@@ -1,15 +1,20 @@
 import React from 'react';
 import SearchBar from "./SearchBar";
 import fbFuncApi from "./api/fbFuncApi";
+import { Button } from '@material-ui/core';
 
 class DataEntry extends React.Component {
 
   render() {
-    // const { urlAddress } = this.props.state;
+    let { urlAddress, onePost } = this.props.stateObj;
+    let { setOnePostData, setOnePostDataOnSubmit } = this.props;
+
     return (
       <div>
-        <SearchBar setOnePostData={this.props.setOnePostData} setOnePostDataOnSubmit={this.props.setOnePostDataOnSubmit} urlAddress={this.props.urlAddress}/>
-        {this.props.urlAddress}
+        <SearchBar setOnePostData={setOnePostData} setOnePostDataOnSubmit={setOnePostDataOnSubmit} urlAddress={urlAddress} />
+        <br />
+        {onePost ? <Button variant="outlined">Analyse</Button> : null}
+
       </div>
     )
   }

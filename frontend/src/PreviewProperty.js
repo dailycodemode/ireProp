@@ -3,8 +3,7 @@ import placeHouse from './root/placeHouse.png';
 class PreviewProperty extends React.Component {
 
   getHouseImgScr = () => {
-
-    let {onePost} =  this.props.onePageDetails;
+    let { onePost } = this.props.onePageDetails;
     if (typeof onePost === 'undefined') {
       return placeHouse
     } else {
@@ -12,25 +11,38 @@ class PreviewProperty extends React.Component {
     }
   }
 
+  getHouseType = (type) => {
+    switch (type) {
+      case "semi":
+        return "Semi-Detached House"
+        break;
+      case "apar":
+        return "Aparment"
+        break;
+      default:
+        return type
+    }
+  }
   render() {
-    let {onePost} =  this.props.onePageDetails;
+    let { onePost } = this.props.onePageDetails;
 
     const renderSummaryDetails = () => {
       if (typeof onePost !== 'undefined') {
-        console.log('will display table');
-        return( 
-        <div>
-          <table>
-          <thead>
-            <tr>
-              {typeof onePost.beds !== 'undefined' ? <td>{onePost.beds} bed</td> : null}
-              {typeof onePost.baths !== 'undefined' ? <td>{onePost.baths} bath</td> : null}
-              {typeof onePost.size !== 'undefined' ? <td>{onePost.size} m2</td> : null}
-            </tr>
-            </thead>
-          </table>
-        </div>)
-        ;
+        // console.log('will display table');
+        return (
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  {typeof onePost.houseType ? <td>{this.getHouseType(onePost.houseType)}</td> : null}
+                  {typeof onePost.beds ? <td>{onePost.beds} bed</td> : null}
+                  {typeof onePost.baths ? <td>{onePost.baths} bath</td> : null}
+                  {typeof onePost.size ? <td>{onePost.size} m<sup>2</sup></td> : null}
+                </tr>
+              </thead>
+            </table>
+          </div>)
+          ;
       }
       return null;
     }
@@ -38,10 +50,10 @@ class PreviewProperty extends React.Component {
     return (< div >
       <section className="one-fourth" id="html" >
         <img src={this.getHouseImgScr()} alt="placeHouse" />
-      </section> 
+      </section>
       {renderSummaryDetails()}
-      </div>
-      
+    </div>
+
     );
   }
 }

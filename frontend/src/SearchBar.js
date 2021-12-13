@@ -10,11 +10,6 @@ class SearchBar extends React.Component {
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleSubmit = (event) => {
-  //   // console.log(this.state.compAddress)
-  //   event.preventDefault();
-  // }
-
   handleChange(event) {
     this.props.setOnePostData(event.target.value);
     // this.setState({ compAddress: event.target.value });

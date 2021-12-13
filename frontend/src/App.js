@@ -23,14 +23,14 @@ class App extends React.Component {
 
   state = {
     urlAddress: "",
-    onePost : undefined
+    onePost: undefined
   }
 
   setOnePostData = (submittedUrl) => {
     this.setState({ urlAddress: submittedUrl })
   }
 
-  setOnePostDataOnSubmit  = (event) => {
+  setOnePostDataOnSubmit = (event) => {
     const postHeaders = { url: this.state.urlAddress };
 
     const resp = fbFuncApi
@@ -38,7 +38,7 @@ class App extends React.Component {
         "oneHome", postHeaders
       )
       .then((resp) => {
-        
+
         this.setState({ onePost: resp.data })
         console.log("STATE");
         console.log(this.state);
@@ -53,14 +53,14 @@ class App extends React.Component {
     return (
       <div id="main">
 
-      <Intro />
-      <br></br>
-      <PreviewProperty onePageDetails={this.state}/>
-      <br />
-      <DataEntry setOnePostData={this.setOnePostData} setOnePostDataOnSubmit={this.setOnePostDataOnSubmit} urlAddress={this.state.urlAddress} />
-      <br />
-      https://www.myhome.ie/residential/brochure/27-clonlara-kerry-pike-cork/4543437
-    </div>
+        <Intro />
+        <br></br>
+        <PreviewProperty onePageDetails={this.state} />
+        <br />
+        <DataEntry setOnePostData={this.setOnePostData} setOnePostDataOnSubmit={this.setOnePostDataOnSubmit} stateObj={this.state} />
+        <br />
+        {/* https://www.myhome.ie/residential/brochure/27-clonlara-kerry-pike-cork/4543437 */}
+      </div>
     )
   }
 }
