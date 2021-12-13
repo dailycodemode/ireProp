@@ -59,6 +59,7 @@ class App extends React.Component {
         <br />
         <DataEntry setOnePostData={this.setOnePostData} setOnePostDataOnSubmit={this.setOnePostDataOnSubmit} stateObj={this.state} />
         <br />
+        { }
         {/* https://www.myhome.ie/residential/brochure/27-clonlara-kerry-pike-cork/4543437 */}
       </div>
     )
