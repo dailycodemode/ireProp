@@ -1,6 +1,5 @@
 import React from 'react';
 import placeHouse from './root/placeHouse.png';
-import PropertySummaryTable from './PropertySummaryTable';
 class PreviewProperty extends React.Component {
 
   getHouseImgScr = () => {
@@ -39,7 +38,6 @@ class PreviewProperty extends React.Component {
     return (< div >
       <section className="one-fourth" id="html" >
         <img src={this.getHouseImgScr()} alt="placeHouse" />
-        {/* <PropertySummaryTable props={this.props}/> */}
       </section> 
       {renderSummaryDetails()}
       </div>
