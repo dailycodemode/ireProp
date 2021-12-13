@@ -5,10 +5,10 @@ class PreviewProperty extends React.Component {
 
   getHouseImgScr = () => {
     if (typeof this.props.mainImg === 'undefined') {
-      console.log("placeHouse");
+      // console.log("placeHouse");
       return placeHouse
     } else {
-      console.log(this.props.mainImg);
+      // console.log(this.props.mainImg);
       return this.props.mainImg
     }
   }

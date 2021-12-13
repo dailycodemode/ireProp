@@ -28,7 +28,10 @@ class App extends React.Component {
 
   setOnePostData = (submittedUrl) => {
     this.setState({ urlAddress: submittedUrl })
-    const postHeaders = { url: submittedUrl };
+  }
+
+  setOnePostDataOnSubmit  = (event) => {
+    const postHeaders = { url: this.state.submittedUrl };
 
     const resp = fbFuncApi
       .post(
@@ -41,6 +44,7 @@ class App extends React.Component {
       .catch((err) => {
         console.error("err for some reason");
       });
+    event.preventDefault();
   }
 
   render() {
@@ -51,7 +55,7 @@ class App extends React.Component {
       <br></br>
       <PreviewProperty mainImg={this.state.onePost.mainImg}/>
       <br />
-      <DataEntry setOnePostData={this.setOnePostData} urlAddress={this.state.urlAddress} />
+      <DataEntry setOnePostData={this.setOnePostData} setOnePostDataOnSubmit={this.setOnePostDataOnSubmit} urlAddress={this.state.urlAddress} />
       <br />
       https://www.myhome.ie/residential/brochure/27-clonlara-kerry-pike-cork/4543437
     </div>

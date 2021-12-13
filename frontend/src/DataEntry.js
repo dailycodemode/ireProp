@@ -8,7 +8,7 @@ class DataEntry extends React.Component {
     // const { urlAddress } = this.props.state;
     return (
       <div>
-        <SearchBar setOnePostData={this.props.setOnePostData} urlAddress={this.props.urlAddress}/>
+        <SearchBar setOnePostData={this.props.setOnePostData} setOnePostDataOnSubmit={this.props.setOnePostDataOnSubmit} urlAddress={this.props.urlAddress}/>
         {this.props.urlAddress}
       </div>
     )

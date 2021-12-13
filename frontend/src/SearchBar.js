@@ -7,13 +7,13 @@ class SearchBar extends React.Component {
     // this.state = { compAddress: '' };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit = (event) => {
-    // console.log(this.state.compAddress)
-    event.preventDefault();
-  }
+  // handleSubmit = (event) => {
+  //   // console.log(this.state.compAddress)
+  //   event.preventDefault();
+  // }
 
   handleChange(event) {
     this.props.setOnePostData(event.target.value);
@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="ui segment">
-        <form onSubmit={this.handleSubmit} className="ui form">
+        <form onSubmit={this.props.setOnePostDataOnSubmit} className="ui form">
           <TextField id="compAddress" label="myhome.ie url" variant="outlined" value={this.props.urlAddress} onChange={this.handleChange} />
         </form>
       </div>
