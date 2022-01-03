@@ -42,6 +42,10 @@ class App extends React.Component {
         this.setState({ onePost: resp.data })
         console.log("STATE");
         console.log(this.state);
+
+        if (resp.data.houseType == "terr") {
+          let dbName = ''
+        }
       })
       .catch((err) => {
         console.error("err for some reason");
